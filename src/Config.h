@@ -6,7 +6,6 @@
 #include <bits/stdc++.h>
 #include <dirent.h>
 
-
 using namespace std;
 
 class Config
@@ -17,13 +16,13 @@ public:
     unsigned int getCount();
     void dump();
     FILE_TYPE getFileType(string filepath);
-    ScreenDefinition * getScreen(unsigned int i);
+    ScreenDefinition *getScreen(unsigned int i);
     Config(string);
     ~Config();
 
 private:
     unsigned int x = 1;
     unsigned int y = 1;
-    vector<ScreenDefinition* > *screens;
+    vector<ScreenDefinition *> *screens;
 };
 #endif

@@ -17,26 +17,23 @@ extern "C"
 #include <libswscale/swscale.h>
 };
 
-
 class Video : protected Media
 {
 public:
-    Video(std::string _path, SDL_Rect _rect, SDL_Renderer *_renderer, Drawable *_queue) : Media(_path, _rect, _renderer, _queue){
-       
-    };
+    Video(std::string _path, SDL_Rect _rect, SDL_Renderer *_renderer, Drawable *_queue) : Media(_path, _rect, _renderer, _queue){};
 
     ~Video();
-    
+
     bool init();
     void start();
 
 private:
-    friend int decoder(void * data);
+    friend int decoder(void *data);
     void startDecoding();
     void endDecoding();
     bool end();
-    void push(SDL_Texture * );
-    SDL_Texture * pop();
+    void push(SDL_Texture *);
+    SDL_Texture *pop();
     AVFormatContext *pFormatContext;
     AVCodecParameters *pCodecParameters;
     AVCodec *pCodec;

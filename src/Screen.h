@@ -16,13 +16,13 @@ public:
     void drawPdf(std::string path, int delay);
     void drawVideo(std::string path);
     void drawLogo(unsigned int delay);
-    SDL_Rect& getRect();
-    Drawable* getQueue();
+    SDL_Rect &getRect();
+    Drawable *getQueue();
     void clear();
-  
+
 private:
     SDL_Rect rect;
     SDL_Renderer *renderer;
-    Drawable* queue;
+    Drawable *queue;
 };
 #endif

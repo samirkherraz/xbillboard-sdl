@@ -19,16 +19,6 @@ Screen *Window::getScreen(unsigned int i)
 bool Window::instance(int screen, ScreenDefinition *sd)
 {
     ScreenThread *th = new ScreenThread(getScreen(screen), sd);
-    std::string plname = "PL_" + sd->getName();
-    SDL_Thread *player = SDL_CreateThread(ScreenThread::play, plname.c_str(), th);
-    if (NULL == player)
-    {
-        return false;
-    }
-    else
-    {
-        player_threads.push_back(player);
-    }
     std::string dlname = "DL_" + sd->getName();
     SDL_Thread *downloader = SDL_CreateThread(ScreenThread::download, dlname.c_str(), th);
     if (NULL == downloader)
@@ -38,6 +28,16 @@ bool Window::instance(int screen, ScreenDefinition *sd)
     else
     {
         downloader_threads.push_back(downloader);
+    }
+    std::string plname = "PL_" + sd->getName();
+    SDL_Thread *player = SDL_CreateThread(ScreenThread::play, plname.c_str(), th);
+    if (NULL == player)
+    {
+        return false;
+    }
+    else
+    {
+        player_threads.push_back(player);
     }
     return true;
 }

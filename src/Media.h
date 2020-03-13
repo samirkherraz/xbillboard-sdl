@@ -3,12 +3,10 @@
 
 #include "Types.h"
 
-
 class Media
 {
 public:
     Media(std::string _path, SDL_Rect _rect, SDL_Renderer *_renderer, Drawable *_queue);
-
     bool init();
     void start(int delay);
     void fadeIn();

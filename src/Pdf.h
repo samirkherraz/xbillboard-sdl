@@ -10,21 +10,16 @@
 class Pdf : protected Media
 {
 public:
-    Pdf(std::string _path, SDL_Rect _rect, SDL_Renderer *_renderer,Drawable* _queue) : Media(_path, _rect, _renderer, _queue){};
-    
+  Pdf(std::string _path, SDL_Rect _rect, SDL_Renderer *_renderer, Drawable *_queue) : Media(_path, _rect, _renderer, _queue){};
   ~Pdf();
-    bool init();
-    void start(int delay);
-
+  bool init();
+  void start(int delay);
 
 private:
-
-
-    static void do_nothing(const std::string&, void*);
-    poppler::document *document;
-    int nbPages = 0;
-    poppler::page_renderer page_renderer;
-   
+  static void do_nothing(const std::string &, void *);
+  poppler::document *document;
+  int nbPages = 0;
+  poppler::page_renderer page_renderer;
 };
 
 #endif

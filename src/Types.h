@@ -11,7 +11,6 @@
 #include <dirent.h>
 using namespace std;
 
-
 enum FILE_TYPE
 {
     PDF,
@@ -23,13 +22,11 @@ enum FILE_TYPE
 class ScreenFileDefinition
 {
 public:
-    ScreenFileDefinition()
-    {
-        
+    ScreenFileDefinition(){
+
     };
-    ~ScreenFileDefinition()
-    {
-        
+    ~ScreenFileDefinition(){
+
     };
     string getUrl()
     {
@@ -65,18 +62,16 @@ public:
     void lock()
     {
         mtx.lock();
-        cout << "File Lock" << endl;
     }
     void unlock()
     {
         mtx.unlock();
-        cout << "File UnLock" << endl;
     }
     void setReady(bool r)
     {
         lock();
         ready = r;
-        cout << getPath() << " Ready :" << r << endl;
+
         unlock();
     }
 
@@ -84,7 +79,7 @@ private:
     string url = "";
     string path = "";
     FILE_TYPE type;
-    std::mutex  mtx;
+    std::mutex mtx;
     bool ready;
 };
 
@@ -157,10 +152,9 @@ public:
         }
     }
 
-    
     void setTexture(SDL_Texture *t)
     {
-        
+
         if (texture != NULL && t != NULL)
         {
             SDL_DestroyTexture(texture);
@@ -170,13 +164,11 @@ public:
         {
             texture = t;
         }
-        
     }
 
     void setTarget(SDL_Rect t)
     {
         target = t;
-        
     }
 
     SDL_Texture *getTexture()
@@ -192,12 +184,10 @@ public:
     void lock()
     {
         mtx.lock();
-        cout << "Drawable Lock" << endl;
     }
     void unlock()
     {
         mtx.unlock();
-        cout << "Drawable UnLock" << endl;
     }
 
 private:
@@ -206,6 +196,5 @@ private:
     SDL_Rect target;
     std::mutex mtx;
 };
-
 
 #endif

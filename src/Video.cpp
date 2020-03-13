@@ -133,7 +133,7 @@ int decoder(void *dd)
                 }
                 else if (response >= 0)
                 {
-                    
+
                     Window::lock();
                     SDL_Texture *t = SDL_CreateTexture(c->renderer, SDL_PIXELFORMAT_YV12, SDL_TEXTUREACCESS_STREAMING, c->pCodecParameters->width, c->pCodecParameters->height);
                     SDL_UpdateYUVTexture(t, NULL, c->pFrame->data[0], c->pFrame->linesize[0],
@@ -141,7 +141,6 @@ int decoder(void *dd)
                                          c->pFrame->data[2], c->pFrame->linesize[2]);
                     Window::unlock();
                     c->push(t);
-                    
                 }
                 else
                 {
@@ -193,7 +192,7 @@ bool Video::end()
 {
     mtx.lock();
     bool e = is_decoding;
-    int size  = mqueue.size();
+    int size = mqueue.size();
     mtx.unlock();
     return (!e && size == 0);
 }
@@ -201,7 +200,7 @@ bool Video::end()
 SDL_Texture *Video::pop()
 {
     std::unique_lock<std::mutex> lk(cmtx);
-    cond.wait(lk, [this]{return mqueue.size() > 0;});
+    cond.wait(lk, [this] { return mqueue.size() > 0; });
     SDL_Texture *t = mqueue.front();
     mqueue.pop();
     cond.notify_all();
@@ -210,9 +209,9 @@ SDL_Texture *Video::pop()
 
 void Video::push(SDL_Texture *t)
 {
-    
+
     std::unique_lock<std::mutex> lk(cmtx);
-    cond.wait(lk, [this]{return mqueue.size() < 120;});
+    cond.wait(lk, [this] { return mqueue.size() < 120; });
     mqueue.push(t);
     cond.notify_all();
 }

@@ -18,7 +18,6 @@ public:
     static void askDraw();
     static void lock();
     static void unlock();
-    
 
 private:
     void clear();
@@ -27,10 +26,10 @@ private:
     SDL_Renderer *renderer;
     SDL_Window *window;
     static std::mutex mtx;
-    static  std::mutex gmtx;
-    static  std::condition_variable cond;
+    static std::mutex gmtx;
+    static std::condition_variable cond;
     static bool job_availiable;
-    static bool  draw_finished;
+    static bool draw_finished;
     vector<Screen> screens;
     vector<SDL_Thread *> player_threads;
     vector<SDL_Thread *> downloader_threads;
